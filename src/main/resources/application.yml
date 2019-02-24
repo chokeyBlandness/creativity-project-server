@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: Mysql,.19970318
+    url: jdbc:mysql://localhost:3306/kaoyan?characterEncoding=utf8&useSSL=false
+  jpa:
+    hibernate:
+      ddl-auto: none
+server:
+  servlet:
+    context-path: /kaoyan
+  port: 8096
