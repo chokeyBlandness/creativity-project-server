@@ -11,6 +11,7 @@ import com.df.kaoyan.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -82,7 +83,12 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<Collection> findCollectionListByUserId(Long userId) {
-        return collectionRepository.findCollectionsByUserId(userId);
+    public List<Post> findCollectionPostListByUserId(Long userId) {
+        List<Collection> collections = collectionRepository.findCollectionsByUserId(userId);
+        List<Post> posts = new ArrayList<Post>();
+        for (Collection collection : collections) {
+            posts.add(postRepository.findPostByPostId(collection.getPostId()));
+        }
+        return posts;
     }
 }

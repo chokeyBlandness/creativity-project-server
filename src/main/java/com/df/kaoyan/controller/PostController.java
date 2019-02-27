@@ -115,7 +115,15 @@ public class PostController {
     @GetMapping("/searchCollectionList/{userId}")
     public @ResponseBody
     String searchCollectionList(@PathVariable("userId")Long userId){
-        // TODO: 2019/1/15
-        return JSON.toJSONString(postService.findCollectionListByUserId(userId));
+        // TODO: 2019/1/15 something may be  added to become better
+
+        return JSON.toJSONString(postService.findCollectionPostListByUserId(userId));
+    }
+
+    @PostMapping()
+    public @ResponseBody
+    String deleteCollection(@RequestBody String requestData){
+        // TODO: 2019/2/27 delete collection
+        return null;
     }
 }

@@ -25,5 +25,5 @@ public interface PostService {
 
     List<Comment> findCommentListByPostId(Long postId);
 
-    List<Collection> findCollectionListByUserId(Long userId);
+    List<Post> findCollectionPostListByUserId(Long userId);
 }
