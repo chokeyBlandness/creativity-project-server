@@ -9,4 +9,6 @@ public interface CollectionRepository extends JpaRepository<Collection,Long> {
     Collection findCollectionByPostIdAndUserId(Long postId, Long userId);
 
     List<Collection> findCollectionsByUserId(Long userId);
+
+    void deleteCollectionsByPostId(Long postId);
 }
