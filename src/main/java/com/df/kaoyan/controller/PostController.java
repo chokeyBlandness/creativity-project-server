@@ -77,7 +77,7 @@ public class PostController {
         if (deletingPostId == null) {
             return JSON.toJSONString(ResultEnum.DELETE_POST_FAILED.getMessage());
         } else {
-            postService.deletePostAndRelatedComments(deletingPostId);
+            postService.deletePostAndRelated(deletingPostId);
             return JSON.toJSONString(ResultEnum.DELETE_POST_SUCCESS.getMessage());
         }
     }

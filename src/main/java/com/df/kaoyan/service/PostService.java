@@ -15,7 +15,7 @@ public interface PostService {
 
     void increaseComment(Comment newComment);
 
-    void deletePostAndRelatedComments(Long postId);
+    void deletePostAndRelated(Long postId);
 
     void addAdmireNum(Long postId);
 

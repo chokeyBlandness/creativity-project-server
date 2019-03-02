@@ -48,7 +48,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public void deletePostAndRelatedComments(Long postId) {
+    public void deletePostAndRelated(Long postId) {
         postRepository.deleteById(postId);
         commentRepository.deleteCommentsByPostId(postId);
         collectionRepository.deleteCollectionsByPostId(postId);
