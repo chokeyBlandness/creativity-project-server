@@ -86,14 +86,14 @@ public class PostController {
     public @ResponseBody
     String increaseComment(@RequestBody String requestData){
         Comment newComment = JSON.parseObject(requestData, Comment.class);
-        if (newComment == null||newComment.getUserId()!=null||newComment.getPostId()!=null) {
+        if (newComment == null || newComment.getUserId() == null || newComment.getPostId() == null) {
             return JSON.toJSONString(ResultEnum.INCREASE_COMMENT_FAILED.getMessage());
         } else {
             newComment.setCommentId(null);
-            if (newComment.getUserName()==null){
+            if (newComment.getUserName() == null) {
                 newComment.setUserName(userService.findUserByUserId(newComment.getUserId()).getUserName());
             }
-            if (newComment.getCreateDate()==null){
+            if (newComment.getCreateDate() == null) {
                 newComment.setCreateDate(new Date());
             }
             postService.increaseComment(newComment);
