@@ -1,11 +1,18 @@
 package com.df.kaoyan.dataobject;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
 public class Clocked {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long clockedId;
+    @Column(nullable = false)
     private Long userId;
+    @Column(nullable = false)
     private String content;
+    @Column(nullable = false)
     private Date clockInDate;
 
     public Long getClockedId() {

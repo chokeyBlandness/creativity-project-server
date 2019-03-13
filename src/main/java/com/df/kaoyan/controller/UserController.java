@@ -1,15 +1,13 @@
 package com.df.kaoyan.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.df.kaoyan.dataobject.Clocked;
 import com.df.kaoyan.dataobject.User;
 import com.df.kaoyan.enums.ResultEnum;
 import com.df.kaoyan.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 
 @Controller
@@ -62,6 +60,28 @@ public class UserController {
             //todo only update userGender,targetProfession,targetSchool
             userService.updateUser(updatedUser);
             return JSON.toJSONString(ResultEnum.CHANGE_USER_INFO_SUCCESS.getMessage());
+        }
+    }
+
+    @GetMapping("/getClockedList/{userId}")
+    public @ResponseBody
+    String getClockedList(@PathVariable(name = "userId")String userIdString){
+        Long userId = JSON.parseObject(userIdString, Long.class);
+        if (userId == null || userId == -1) {
+            return JSON.toJSONString("");
+        } else {
+            return JSON.toJSONString(userService.findClockedListByUserId(userId));
+        }
+    }
+
+    @PostMapping("/createNewClocked")
+    public @ResponseBody
+    String createNewClocked(@RequestBody String requestData) {
+        Clocked newClocked = JSON.parseObject(requestData, Clocked.class);
+        if (newClocked == null) {
+            return null;
+        } else {
+            return JSON.toJSONString(userService.createNewClocked(newClocked));
         }
     }
 
