@@ -20,19 +20,22 @@ public class UserController {
     @PostMapping("/login")
     public @ResponseBody
     String login(@RequestBody String requestData){
-        String loginMessage;
+//        String loginMessage;
         User loginInfo = JSON.parseObject(requestData,User.class);
         User foundInfo = userService.findUserByEmail(loginInfo.getEmail());
         if (foundInfo == null){
-            loginMessage = ResultEnum.LOGIN_ERROR.getMessage();
+//            loginMessage = ResultEnum.LOGIN_ERROR.getMessage();
+            return JSON.toJSONString(ResultEnum.LOGIN_ERROR.getMessage());
         }else {
             if (foundInfo.getPassword().equals(loginInfo.getPassword())){
-                loginMessage = String.valueOf(foundInfo.getUserId());
+//                loginMessage = String.valueOf(foundInfo.getUserId());
+                return JSON.toJSONString(foundInfo);
             }else {
-                loginMessage = ResultEnum.LOGIN_PSW_ERROR.getMessage();
+//                loginMessage = ResultEnum.LOGIN_PSW_ERROR.getMessage();
+                return JSON.toJSONString(ResultEnum.LOGIN_PSW_ERROR.getMessage());
             }
         }
-        return JSON.toJSONString(loginMessage);
+//        return JSON.toJSONString(loginMessage);
     }
 
     @PostMapping("/register")
